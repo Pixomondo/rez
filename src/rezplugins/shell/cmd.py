@@ -127,7 +127,7 @@ class CMD(Shell):
                     # that would leave spawn_shell hung on a blocked call
                     # waiting for the user to type "exit" into the shell that
                     # was spawned to run the rez context printout
-                    ex.command("cmd /Q /C rez context")
+                    ex.command("cmd /Q /K rez context")
 
         def _create_ex():
             return RexExecutor(interpreter=self.new_shell(),
@@ -169,6 +169,17 @@ class CMD(Shell):
                 cmd = pre_command
         cmd = cmd + [self.executable, "/Q", "/K", target_file]
         p = subprocess.Popen(cmd, env=env, **Popen_args)
+
+        # vvvvv DEBUG ONLY vvvvv
+        from tempfile import gettempdir
+        from pprint import pformat
+        with open(os.path.join(gettempdir(), 'rez.temp.log'), 'a') as dst:
+            dst.write('\n')
+            dst.write(subprocess.list2cmdline(cmd) + '\n')
+            dst.write(pformat(Popen_args))
+            dst.write('\n')
+        # ^^^^^ DEBUG ONLY ^^^^^
+
         return p
 
     def escape_string(self, value):

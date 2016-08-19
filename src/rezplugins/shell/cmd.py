@@ -123,10 +123,11 @@ class CMD(Shell):
 #                ex.info('You are now in a rez-configured environment.')
 #                ex.info('')
                 if system.is_production_rez_install:
-                    # previously this was called with the /K flag, however
-                    # that would leave spawn_shell hung on a blocked call
-                    # waiting for the user to type "exit" into the shell that
-                    # was spawned to run the rez context printout
+                    # calling this with /K keeps the "rez env" configured
+                    # shell available for use until the user runs "exit"; with
+                    # /C the "rez env" is applied and then immediately lost
+                    # when the child process returns and then the cmd
+                    # also returns in succession
                     ex.command("cmd /Q /K rez context")
 
         def _create_ex():

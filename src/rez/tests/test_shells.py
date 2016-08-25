@@ -182,6 +182,15 @@ class TestShells(TestBase, TempdirMixin):
             p.wait()
             self.assertEqual(p.returncode, 0)
 
+    @shell_dependent(include=['cmd'])
+    def test_windows_rez_command_escaping(self):
+        """Test that strings are escaped properly on Windows."""
+        sh = create_shell()
+        test = 'f f-1.0 f@1.0 f-1+ f-1+<4.3 f>3 f<3 f==1.0.1'
+        expected = 'f f-1.0 f@1.0 f-1+ f-1+^<4.3 f^>3 f^<3 f==1.0.1'
+        result = sh.escape_string(test)
+        self.assertEqual(result, expected)
+
     @shell_dependent()
     def test_rex_code(self):
         """Test that Rex code run in the shell creates the environment variable

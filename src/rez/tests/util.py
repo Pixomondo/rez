@@ -125,7 +125,7 @@ def cmake_dependent(fn):
         return unittest.skip('cmake not available')(fn)
     return fn
 
-def shell_dependent(exclude=None):
+def shell_dependent(exclude=None, include=None):
     """Function decorator that runs the function over all shell types."""
     def decorator(func):
         @functools.wraps(func)
@@ -136,6 +136,10 @@ def shell_dependent(exclude=None):
                 shells = [only_shell]
 
             for shell in shells:
+                # allow us to include a subset of shells
+                if include and shell not in include:
+                    self.skipTest("This test does not run on %s shell." % shell)
+                # allow us to exclude a subset of shells
                 if exclude and shell in exclude:
                     self.skipTest("This test does not run on %s shell." % shell)
                 print "\ntesting in shell: %s..." % shell

@@ -153,7 +153,9 @@ class CMD(Shell):
         if shell_command:
             # launch the provided command in the configured shell and wait until it exits
             executor.command(shell_command)
-        else:
+        # test for None specificaly because resolved_context.execute_rex_code passes ''
+        # and we do NOT want to keep a shell open during a rex code exec operation
+        elif shell_command is None: 
             # launch the configured shell itself and wait for user interaction to exit
             executor.command('cmd /Q /K')
             

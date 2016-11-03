@@ -129,11 +129,7 @@ class CMD(Shell):
 #                ex.info('You are now in a rez-configured environment.')
 #                ex.info('')
                 if system.is_production_rez_install:
-                    # calling this with /K keeps the "rez env" configured
-                    # shell available for use until the user runs "exit"; with
-                    # /C the "rez env" is applied and then immediately lost
-                    # when the child process returns and then the cmd
-                    # also returns in succession
+                    # print the current context and continue
                     ex.command("cmd /Q /C rez context")
 
         def _create_ex():
@@ -155,7 +151,16 @@ class CMD(Shell):
             _record_shell(executor, files=startup_sequence["files"], print_msg=(not quiet))
 
         if shell_command:
+            # launch the provided command in the configured shell and wait until it exits
             executor.command(shell_command)
+        # test for None specificaly because resolved_context.execute_rex_code passes ''
+        # and we do NOT want to keep a shell open during a rex code exec operation
+        elif shell_command is None: 
+            # launch the configured shell itself and wait for user interaction to exit
+            executor.command('cmd /Q /K')
+            
+        # then exit the configured shell
+        executor.command('exit %errorlevel%')
 
         code = executor.get_output()
         target_file = os.path.join(tmpdir, "rez-shell.%s"

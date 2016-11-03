@@ -134,7 +134,7 @@ class CMD(Shell):
                     # /C the "rez env" is applied and then immediately lost
                     # when the child process returns and then the cmd
                     # also returns in succession
-                    ex.command("cmd /Q /K rez context")
+                    ex.command("cmd /Q /C rez context")
 
         def _create_ex():
             return RexExecutor(interpreter=self.new_shell(),
@@ -156,7 +156,6 @@ class CMD(Shell):
 
         if shell_command:
             executor.command(shell_command)
-        executor.command('exit %errorlevel%')
 
         code = executor.get_output()
         target_file = os.path.join(tmpdir, "rez-shell.%s"

@@ -1,7 +1,7 @@
 
 
 # Update this value to version up Rez. Do not place anything else in this file.
-_rez_version = "2.1.1.pxo.01"
+_rez_version = "2.2.0.pxo.01"
 
 
 # Copyright 2013-2016 Allan Johns.

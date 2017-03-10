@@ -110,6 +110,9 @@ class CMD(Shell):
                 else ("%s " + new_prompt)
             new_prompt = new_prompt % curr_prompt
             self._addline('set PROMPT=%s' % new_prompt)
+        # PXO: Set cmd.exe title
+        if config.shell_title:
+            self._addline('@title %s' % config.shell_title)
 
     def spawn_shell(self, context_file, tmpdir, rcfile=None, norc=False,
                     stdin=False, command=None, env=None, quiet=False,

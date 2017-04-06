@@ -243,7 +243,7 @@ class ResolvedContext(object):
 
         def _package_load_callback(package):
             if package_load_callback:
-                _package_load_callback(package)
+                package_load_callback(package)
             self.num_loaded_packages += 1
 
         request = self.requested_packages(include_implicit=True)
@@ -1558,7 +1558,7 @@ class ResolvedContext(object):
                 commands.set_package(pkg)
 
                 try:
-                    executor.execute_code(commands)
+                    executor.execute_code(commands, isolate=True)
                 except error_class as e:
                     exc = e
 

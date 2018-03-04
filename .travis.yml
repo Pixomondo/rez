@@ -12,7 +12,6 @@ matrix:
     # https://github.com/travis-ci/travis-ci/issues/2312
     - language: generic
       os: osx
-      env: _REZ_SHELL=bash
       before_install:
         - brew update
         - brew install tcsh

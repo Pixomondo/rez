@@ -4,8 +4,6 @@ matrix:
   include:
     - python: 2.7
       os: linux
-      env:
-        REZ_SET_PROMPT: False
       before_install:
         - sudo apt-get install tcsh -y
         - sudo apt-get install csh -y
@@ -17,7 +15,7 @@ matrix:
       before_install:
         - brew update
         - brew install tcsh
-        - brew install python2
+        - brew install python
         - virtualenv env -p python2
         - source env/bin/activate
 install:

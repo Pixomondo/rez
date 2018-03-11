@@ -4,6 +4,8 @@ matrix:
   include:
     - python: 2.7
       os: linux
+      env:
+        REZ_SET_PROMPT: False
       before_install:
         - sudo apt-get install tcsh -y
         - sudo apt-get install csh -y

@@ -15,7 +15,7 @@ matrix:
       before_install:
         - brew update
         - brew install tcsh
-        - brew install python
+        - brew install python2
         - virtualenv env -p python2
         - source env/bin/activate
 install:

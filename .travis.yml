@@ -15,7 +15,8 @@ matrix:
       before_install:
         - brew update
         - brew install tcsh
-        - brew list python@2 || brew install python@2
+        - brew list python@2 || brew install python@2 || brew unlink python
+        - brew install python@2
         - export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
         - virtualenv env -p python2
         - source env/bin/activate

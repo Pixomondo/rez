@@ -12,7 +12,7 @@ environment:
 
 install:
   # Install rez
-  - %PYTHON%\python.exe install.py temp
+  - "%PYTHON%\python.exe install.py temp"
 
 init:
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64

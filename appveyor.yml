@@ -1,22 +1,24 @@
+# We need cl.exe when running our tests which is why it's important we use
+# the appropriate image.
+image: Visual Studio 2015
+
 environment:
-  APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
   matrix:
     # For Python versions available on Appveyor, see
     # http://www.appveyor.com/docs/installed-software#python
     # The list here is complete (excluding Python 2.6, which
     # isn't covered by this document) at the time of writing.
-    - PYTHON: "C:\\Python27-x64"
+    - PYTHON: "C:\Python27-x64"
 
 install:
   # Install rez
-  - "%PYTHON%\\python.exe install.py temp"
+  - "%PYTHON%\python.exe install.py temp"
 
 init:
-  - "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\vcvarsall
-  .bat" amd64
+  - "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
 
 build: off
 
 test_script:
   # Run rez selftest
-  - "C:\\projects\\rez\\temp\\Scripts\\rez\\rez.exe selftest"
+  - "C:\projects\rez\temp\Scripts\rez\rez.exe selftest"

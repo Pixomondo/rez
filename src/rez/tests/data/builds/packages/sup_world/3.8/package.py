@@ -10,7 +10,8 @@ requires = ['translate_lib-2.2']
 tools = ['test_ghetto']
 
 def commands():
-    env.PATH.append('{root}/bin')
+    # env.PATH.append('{root}/bin')
+    pass
 
 
 # Copyright 2013-2016 Allan Johns.

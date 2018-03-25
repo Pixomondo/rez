@@ -15,6 +15,7 @@ install:
   - "%PYTHON%\\python.exe install.py temp"
 
 init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
 
 build: off
@@ -23,3 +24,6 @@ test_script:
   # Run rez selftest
   - "C:\\projects\\rez\\temp\\Scripts\\rez\\rez.exe env -- echo %PATH%"
   - "C:\\projects\\rez\\temp\\Scripts\\rez\\rez.exe selftest"
+
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

@@ -1,4 +1,5 @@
 environment:
+  APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
   matrix:
     # For Python versions available on Appveyor, see
     # http://www.appveyor.com/docs/installed-software#python
@@ -9,6 +10,9 @@ environment:
 install:
   # Install rez
   - "%PYTHON%\\python.exe install.py temp"
+
+init:
+  - "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
 
 build: off
 

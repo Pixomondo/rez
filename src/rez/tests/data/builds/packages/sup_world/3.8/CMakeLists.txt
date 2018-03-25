@@ -4,6 +4,3 @@ include(RezBuild)
 
 subdirs(lib)
 subdirs(util)
-
-MESSAGE( STATUS "PATH:         " $ENV{PATH} )
-

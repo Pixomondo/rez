@@ -21,4 +21,5 @@ build: off
 
 test_script:
   # Run rez selftest
+  - "C:\\projects\\rez\\temp\\Scripts\\rez\\rez.exe env -- echo %PATH%"
   - "C:\\projects\\rez\\temp\\Scripts\\rez\\rez.exe selftest"

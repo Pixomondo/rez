@@ -8,11 +8,11 @@ environment:
     # http://www.appveyor.com/docs/installed-software#python
     # The list here is complete (excluding Python 2.6, which
     # isn't covered by this document) at the time of writing.
-    - PYTHON: "C:\\Python27-x64"
+    - PYTHON: C:\Python27-x64
 
 install:
   # Install rez
-  - "%PYTHON%\\python.exe install.py temp"
+  - %PYTHON%\python.exe install.py temp
 
 init:
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64
@@ -21,4 +21,4 @@ build: off
 
 test_script:
   # Run rez selftest
-  - "C:\\projects\\rez\\temp\\Scripts\\rez\\rez.exe selftest"
+  - C:\projects\rez\temp\Scripts\rez\rez.exe selftest

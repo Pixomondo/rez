@@ -1,7 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
-MESSAGE( STATUS "PATH:         " $ENV{PATH} )
-
 include(RezBuild)
 
 rez_find_packages(PREFIX pkgs AUTO)
